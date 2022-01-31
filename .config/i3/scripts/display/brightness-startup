@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source $HOME/.config/i3/.idesktop
+
+brightnessctl set "$BRIGHTNESS%"
+

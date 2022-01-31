@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/id/.config/bspwm/wallpaper/light.jpg' 

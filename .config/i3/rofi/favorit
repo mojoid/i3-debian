@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+source ~/.config/i3/.idesktop
+
+if [ "$@" = "quit" ]
+then
+	exit 0
+fi
+
+shutdown() {
+	coproc ~/.config/i3/scripts/powermenu/promptmenu.sh --yes-command "$POWEROFF" --query "      Poweroff?"
+	}
+reboot() {
+	coproc ~/.config/i3/scripts/powermenu/promptmenu.sh --yes-command "$REBOOT" --query "       Reboot?"
+	}
+logout() {
+	coproc ~/.config/i3/scripts/powermenu/promptmenu.sh --yes-command "$LOGOUT" --query "       Logout?"
+	}
+back() {
+	coproc bash -c "~/.config/i3/rofi/rofi"
+	}
+set_powermenu() {
+	echo -e "back\nshutdown\nreboot\nlock\nsuspend\nlogout"
+	}
+
+if [ "$@" ]; then
+	case "$@" in
+		Polybar*) coproc ~/.config/i3/panel/color-switch.sh ;;
+		Musik) coproc ~/.config/i3/scripts/sound/musik ;;
+		Screenshot) coproc ~/.config/i3/scripts/shot/screenshot.sh;;
+ 		Powermenu) set_powermenu ;;
+	esac
+else
+	echo "Polybar themes"
+	echo "Musik"
+	echo "Screenshot"
+	echo "Powermenu"
+fi
+"$@"
+

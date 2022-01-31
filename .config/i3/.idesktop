@@ -1,0 +1,30 @@
+#------------[ global variable do not Edit]
+THEME="iLight"
+WALLPAPER="DEFAULT"
+SSFRAME="#fdfdfd"
+PANELPOSITION="TOP"
+MUSIC="off"
+BRIGHTNESS=24
+
+#------------[ theme ]
+	if [[ $THEME == "iLight" ]]; then
+			ICONDIR="$HOME/.config/i3/ilight/icons" 
+	elif [[ $THEME == "iDark" ]]; then
+			ICONDIR="$HOME/.config/i3/idark/icons"
+	fi
+
+#------------[ notifier directory ]
+NOTIFIER="$HOME/.config/i3/scripts/notify/notify-send.sh"
+
+#------------[ Network interface ]
+ETHERNETINT=$(ls /sys/class/net | grep ^e) #this will capture enpX or ethX
+WIRELESSINT=$(ls /sys/class/net | grep wl) #this will capture wlpX or wloX
+
+#------------[ Screen resolution ]
+RESOLUTION="1366x768"							#Available options : 1366x768 and 1920x1080
+
+# -----------[ Power Menu Command ]
+POWEROFF="systemctl poweroff"			#systemd default
+REBOOT="systemctl reboot"						#systemd default
+LOCK="~/.config/i3/i3lock"						#i3lock
+SLEEP="suspend"										#systemd default

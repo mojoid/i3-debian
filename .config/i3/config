@@ -1,0 +1,179 @@
+set $mod Mod4
+set $alt Mod1
+font pango:Noto Sans 8.5
+
+# gaps
+gaps inner 6
+
+#-----------------[ patch ]
+#scripts
+set $display ~/.config/i3/scripts/display
+set $notify ~/.config/i3/scripts/notify
+set $powermenu ~/.config/i3/scripts/powermenu
+set $shot	~/.config/i3/scripts/shot
+set $sound ~/.config/i3/scripts/sound
+#launcher
+set $launcher ~/.config/i3/rofi
+#panel
+set $panel ~/.config/i3/panel
+
+#-----------------[ KEYBIND INFORMATIONS ]
+#bindsym $mod+k exec 
+
+#-----------------[ SETTINGS ]
+# lock
+bindsym $mod+Delete exec bash -c "~/.config/i3/i3lock" 
+# powermenu
+bindsym $mod+Shift+Delete exec bash -c "$powermenu/powermenu.sh" 
+# reload the configuration file
+bindsym $mod+Shift+c exec bash -c '$notify/i3-notify "reload" "Reload Config"'
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r exec bash -c '$notify/i3-notify "restart" "WM Restart"'
+# default to floating
+floating_minimum_size 80 x 20
+floating_maximum_size -1 x -1
+for_window [class="URxvt"] floating enable
+for_window [class="Gpick"] floating enable
+for_window [class="Galculator"] floating enable
+for_window [class="Viewnior"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="vlc"] floating enable
+for_window [class="Lxappearance"] floating enable
+# remove title bar
+for_window [class="^.*"] border pixel 0
+new_window 1pixel
+# default ws
+assign [class="Firefox-esr"] $ws5
+
+
+#-----------------[ BUTTON ]
+# brightness
+bindsym XF86MonBrightnessUp exec bash -c "$display/brightness up"
+bindsym XF86MonBrightnessDown exec bash -c "$display/brightness down"
+# volume
+bindsym XF86AudioRaiseVolume exec bash -c "$sound/volume up"
+bindsym XF86AudioLowerVolume exec bash -c "$sound/volume down"
+bindsym XF86AudioMute exec bash -c "$sound/volume mute"
+# media
+bindsym XF86AudioPlay exec bash -c 'playerctl play-pause && $notify/short-notify "media-playpause.png" 3000 "Play / Pause" "mpc toggle"'
+bindsym XF86AudioNext exec bash -c 'playerctl next && $short-notify "media-next.png" 3000 "Next" "Media Control"'
+bindsym XF86AudioPrev exec bash -c 'playerctl previous && $notify/short-notify "media-previous.png" 3000 "Previous" "Media Control"'
+# wifi
+bindsym F12 exec networkmanager_dmenu
+
+
+#-----------------[ WORKSPASE ]
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+# switch to workspace
+bindsym $mod+1 exec bash -c '$notify/i3-notify "workspace number $ws1" "Workspace 1" "Switch Workspace"'
+bindsym $mod+2 exec bash -c '$notify/i3-notify "workspace number $ws2" "Workspace 2" "Switch Workspace"'
+bindsym $mod+3 exec bash -c '$notify/i3-notify "workspace number $ws3" "Workspace 3" "Switch Workspace"'
+bindsym $mod+4 exec bash -c '$notify/i3-notify "workspace number $ws4" "Workspace 4" "Switch Workspace"'
+bindsym $mod+5 exec bash -c '$notify/i3-notify "workspace number $ws5" "Workspace 5" "Switch Workspace"'
+bindsym $mod+6 exec bash -c '$notify/i3-notify "workspace number $ws6" "Workspace 6" "Switch Workspace"'
+bindsym $mod+7 exec bash -c '$notify/i3-notify "workspace number $ws7" "Workspace 7" "Switch Workspace"'
+bindsym $mod+8 exec bash -c '$notify/i3-notify "workspace number $ws8" "Workspace 8" "Switch Workspace"'
+bindsym $mod+9 exec bash -c '$notify/i3-notify "workspace number $ws9" "Workspace 9" "Switch Workspace"'
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+
+
+#-----------------[ NAVIGASI & LAYOUT]
+#navigate workspaces next / previous
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+Shift+bracketright  move container to workspace back_and_forth; workspace back_and_forth
+bindsym $mod+Shift+bracketleft move container to workspace back_and_forth; workspace back_and_forth
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+# workspace back and forth (with/without active container )
+workspace_auto_back_and_forth yes
+bindsym $mod+Home workspace back_and_forth
+bindsym $mod+Shift+Home move container to workspace back_and_forth; workspace back_and_forth
+# resize window (you can also use the mouse for that)
+bindsym $mod+Control+Left resize shrink width 2 px or 2 ppt
+bindsym $mod+Control+Down resize grow height 2 px or 2 ppt
+bindsym $mod+Control+Up resize shrink height 2 px or 2 ppt
+bindsym $mod+Control+Right resize grow width 2 px or 2 ppt
+# to drag floating windows to their wanted position
+floating_modifier $mod
+
+
+#-----------------[ WINDOW CONTROL ]
+# toggle sticky
+bindsym $mod+Shift+s sticky toggle
+# kill window
+bindsym $mod+Shift+z kill
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+# focus the parent container
+bindsym $mod+a focus parent
+# split in horizontal & vertical orientation
+bindsym $mod+h exec bash -c "$notify/i3-notify 'split h' 'Horizontal' 'Tilling Direction'"
+bindsym $mod+v exec bash -c "$notify/i3-notify 'split v' 'Vertical' 'Tilling Direction'"
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+# stacked, tabbed, toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+# scratchpad
+bindsym $mod+End move scratchpad
+bindsym $mod+Shift+End scratchpad show
+bindsym $mod+z scratchpad show
+
+#-----------------[ STARTUP ]
+# service
+exec lxpolkit
+exec_always pkill polybar; bash -c "$panel/launch.sh"
+exec_always pkill picom; sleep 2; picom -b
+exec xfce4-power-manager &
+# script 
+exec bash -c "~/.config/i3/startup"
+exec bash -c "$display/brightness-startup"
+exec bash -c "$powermenu/on_ac_power.sh"
+exec bash -c "$powermenu/low_bat.sh"
+
+#-----------------[ APLICATIONS ]
+bindsym $mod+Shift+Return exec bash -c "$launcher/rofi"
+bindsym $mod+Shift+p exec "$sound/musik"
+bindsym $mod+Return exec urxvt
+bindsym $mod+r exec urxvt -e ranger
+bindsym $mod+t exec thunar
+bindsym $mod+b exec firefox-esr
+
+
+#-----------------[ CUSTOMIZE ]
+# themes
+bindsym $mod+Shift+m exec "~/.config/i3/switch"
+# screenshot
+bindsym $mod+Print exec bash -c "$shot/screenshot.sh"
+bindsym Print exec bash -c "$shot/shot-now"
+# info-batt
+bindsym $mod+$alt+Delete exec bash -c "$powermenu/info_bat.sh"

@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+cp -rf * ~/
+cd .icons && tar -Jxvf icon.tar.xz
+cd .themes && tar -Jxvf tema.tar.xz
+fc-cache -rv
+i3-msg "restart"

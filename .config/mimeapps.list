@@ -1,0 +1,15 @@
+[Added Associations]
+application/x-sharedlib=geany.desktop;
+application/octet-stream=geany.desktop;
+image/png=feh.desktop;
+text/x-csrc=geany.desktop;
+application/x-shellscript=geany.desktop;
+application/x-glade=geany.desktop;
+application/x-core=geany.desktop;
+
+[Default Applications]
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
