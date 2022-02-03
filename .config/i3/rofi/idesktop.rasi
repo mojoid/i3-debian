@@ -19,8 +19,8 @@ configuration {
 	text-color: @foreground;
 	columns: 1;
 	lines: 5;
-	x-offset: 5px;
-	y-offset: 39px;
+	//x-offset: 5px;
+	//y-offset: 39px;
 }
 
 @import "colors.rasi"
@@ -28,8 +28,10 @@ configuration {
 window {
     height: 250px;
     width: 550px;
-    location: northwest;
-    anchor: northwest;
+    //location: northwest;
+    //anchor: northwest;
+    location: center;
+    anchor: south;
     text-color: @foreground;
 }
 prompt {
