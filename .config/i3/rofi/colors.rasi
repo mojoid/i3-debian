@@ -1,8 +1,8 @@
 /* colors */
 
 * {
-  background: #353535FF;
-  foreground: #FDFDFDFF;
+  background: #FDFDFDFF;
+  foreground: #8F8F8FFF;
   foreground-list: #00000000;
   background-light: #51CDFF33;
   background-focus: #282C34FF;

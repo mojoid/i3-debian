@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+
+
 on_ac_power
 PREVIOUS=$(echo $?)
 
@@ -8,9 +10,13 @@ do
 	CURRENT=$(echo $?)
 		
 		if [ $CURRENT -ne $PREVIOUS ]; then
-				sleep 4
+				sleep 6
+				echo `$HOME/.config/i3/scripts/powermenu/info_bat.sh`
+				PREVIOUS=$(echo $CURRENT)
+		elif [[ `$status_batt` = Discharging ]]; then
+		sleep 6
 				echo `$HOME/.config/i3/scripts/powermenu/info_bat.sh`
 				PREVIOUS=$(echo $CURRENT)
 		fi
-		sleep 1
+sleep 1
 done
